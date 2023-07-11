@@ -40,13 +40,13 @@ We're interested in how you break down the work and build your solution in a cle
   - run `npm install axios` to install required library 
 - Relating to the task please add answers to the following questions;
     1. How might you make this service more secure?
-        In order to make this application more secure, firstly we can restrict the allowable file types and also include input validations for any data being captured at the frontend. We can avoid using inline javascript and opt for content security policy , that will secure the communication between client and server and will disable running any inline script on our application.
+        - In order to make this application more secure, firstly we can restrict the allowable file types and also include input validations for any data being captured at the frontend. We can avoid using inline javascript and opt for content security policy , that will secure the communication between client and server and will disable running any inline script on our application.
     2. How would you make this solution scale to millions of records?
-       The solution can be scaled to millions of records by splitting the data into features based on most important details. We could have separate service/lookup for each feature and few main services which use these microservices to retrieve the data internally. This would ensure clean and readable code, while also make API calls faster.
+       - The solution can be scaled to millions of records by splitting the data into features based on most important details. We could have separate service/lookup for each feature and few main services which use these microservices to retrieve the data internally. This would ensure clean and readable code, while also make API calls faster.
     3. What else would you have liked to improve given more time?
-       I would add try and catch blocks to capture and handle all possible errors 
-       I would have spent some more time debugging the code to understand why the .csv file was not written.
-       I would have added comments explaining the code making it more readable.
+       - I would add try and catch blocks to capture and handle all possible errors 
+         I would have spent some more time debugging the code to understand why the .csv file was not written.
+         I would have added comments explaining the code making it more readable.
   
 
 On completion email a link to your repository to your contact at Moneyhub and ensure it is publicly accessible.
