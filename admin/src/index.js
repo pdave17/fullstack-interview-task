@@ -28,8 +28,8 @@ app.listen(config.port, (err) => {
   console.log(`Server running on port ${config.port}`)
 })
 
-app.get('/', (req, res) => {
-  const reportData = generateReport()
+app.get('/userHoldings', async (req, res) => {
+  const reportData = await generateReport()
   const options = {
     url: `${config.investmentsServiceUrl}/investments/export`,
     method: 'POST',
@@ -57,21 +57,29 @@ app.get('/', (req, res) => {
 });
 
 function generateReport() {
-  axios.get(`${config.investmentsServiceUrl}/investments`)
-    .then(response => {
-      const accountData = response.data;
+  return new Promise((resolve, reject) => {
+    axios.get(`${config.investmentsServiceUrl}/investments`)
+      .then(response => {
+        const accountData = response.data;
 
-      const headers = ['User', 'First Name', 'Last Name', 'Date', 'Holding', 'Value'];
-      let csvr = headers.join(',') + '\n';
+        const reportData = accountData.map(acc => {
+          const { userId, firstName, lastName, date, holdings, investmentTotal } = acc;
+          const { id: holdingId, investmentPercentage } = holdings[0];
+          const value = acc.investmentTotal * investmentPercentage;
 
-      accountData.forEach(acc => {
-        const { userId, firstName, lastName, date, holdings, investmentTotal } = acc;
-        const { id: holdingId, investmentPercentage  } = holdings[0];
-        const value = acc.investmentTotal * investmentPercentage;
+          return {
+            userId,
+            firstName,
+            lastName,
+            date,
+            holdingId,
+            value
+          };
 
-        const row = [userId, firstName, lastName, date, holdingId, value];
-        csvr += row.join(',') + '\n';
+          // const row = [userId, firstName, lastName, date, holdingId, value];
+          // csvr += row.join(',') + '\n';
+        });
+        resolve(reportData);
       });
-      return csvr;
-    });
+  });
 }
