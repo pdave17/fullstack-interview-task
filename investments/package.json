@@ -28,6 +28,6 @@
     "config": "^3.3.3",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
-    "ramda": "^0.27.1"
+    "ramda": "^0.27.2"
   }
 }
