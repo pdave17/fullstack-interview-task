@@ -34,7 +34,10 @@ We're interested in how you break down the work and build your solution in a cle
 **Please make sure to update the readme with**:
 
 - Your new routes
+  Admin - localhost:8083
+  - `/userHoldings` get user holding data and send it to `/export` route of investments service
 - How to run any additional scripts or tests you may have added
+  run `npm install axios` to install required library 
 - Relating to the task please add answers to the following questions;
     1. How might you make this service more secure?
         In order to make this application more secure, firstly we can restrict the allowable file types and also include input validations for any data being captured at the frontend. We can avoid using inline javascript and opt for content security policy , that will secure the communication between client and server and will disable running any inline script on our application.
